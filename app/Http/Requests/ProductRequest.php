@@ -22,9 +22,10 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required | min:3',
+            'name' => 'required|min:3',
             'description' => 'required',
-            'price' => 'required',
+            'price' => 'required|numeric',
+            'img' => 'image',
         ];
     }
 
@@ -35,6 +36,7 @@ class ProductRequest extends FormRequest
             'name.min' => 'Il nome deve essere lungo almeno 3 lettere.',
             'description.required' => 'Devi inserire la descrizione.',
             'price.required' => 'Devi inserire il prezzo.',
+            'img.image' => 'Il file deve essere di tipo immagine.',
         ];
     }
 }
