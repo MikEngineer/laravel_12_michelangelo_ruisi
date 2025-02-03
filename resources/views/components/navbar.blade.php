@@ -13,25 +13,45 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('products.index')}}">Prodotti</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('article.index')}}">Articoli</a>
+                </li>
                 @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('login')}}">Accedi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('register')}}">Registrati</a>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Ciao, ospite!
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="{{route('login')}}">Accedi</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="{{route('register')}}">Registrati</a>
+                            </li>
+                        </ul>
                     </li>
                 @endguest
                 @auth
-                    <li class="nav-item">
-                        <form method="POST" action="{{route('logout')}}">
-                            @csrf
-                            <button class="nav-link">
-                                Logout
-                            </button>
-                        </form>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Benvenutə {{Auth::user()->name}}</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Ciao, {{Auth::user()->name}}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <form method="POST" action="{{route('logout')}}">
+                                    @csrf
+                                    <button class="dropdown-item">
+                                        Logout
+                                    </button>
+                                </form>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="{{route('article.create')}}">Crea articolo</a>
+                            </li>
+                        </ul>
                     </li>
                 @endauth
             </ul>

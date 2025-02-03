@@ -1,3 +1,8 @@
 .card-custom{
     min-height: 382px;
 }
+
+.img-article{
+    max-height: 30vh;
+    
+}
