@@ -13,6 +13,27 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('products.index')}}">Prodotti</a>
                 </li>
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('login')}}">Accedi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('register')}}">Registrati</a>
+                    </li>
+                @endguest
+                @auth
+                    <li class="nav-item">
+                        <form method="POST" action="{{route('logout')}}">
+                            @csrf
+                            <button class="nav-link">
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Benvenutə {{Auth::user()->name}}</a>
+                    </li>
+                @endauth
             </ul>
         </div>
     </div>
