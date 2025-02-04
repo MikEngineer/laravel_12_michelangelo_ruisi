@@ -17,8 +17,6 @@ Route::post('/article/store', [ArticleController::class,'store'])->name('article
 Route::get('/article/index', [ArticleController::class,'index'])->name('article.index');
 Route::get('/article/show/{article}', [ArticleController::class,'show'])->name('article.show');
 
-Route::get('/article/{article}/edit', [ArticleController::class, 'edit'])->name('article.edit');
-Route::put('/article/{article}/update', [ArticleController::class, 'update'])->name('article.update');
-Route::delete('/article/{article}/destroy', [ArticleController::class, 'destroy'])->name('article.destroy');
-
-
+Route::get('/article/{article}/edit', [ArticleController::class, 'edit'])->name('article.edit')->middleware('auth');
+Route::put('/article/{article}/update', [ArticleController::class, 'update'])->name('article.update')->middleware('auth');
+Route::delete('/article/{article}/destroy', [ArticleController::class, 'destroy'])->name('article.destroy')->middleware('auth');

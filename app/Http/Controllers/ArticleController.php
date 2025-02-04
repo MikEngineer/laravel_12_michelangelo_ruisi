@@ -6,6 +6,7 @@ use Exception;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
+use App\Http\Requests\ArticleEditRequest;
 
 class ArticleController extends Controller
 {
@@ -31,13 +32,13 @@ class ArticleController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-            Article::create([
-                "title"=> $request->title,
-                "subtitle"=> $request->subtitle,
-                "body"=> $request->body,
-                "img"=> $request->file('img')->store("img", "public")
-            ]);
-            return redirect()->back()->with('message', 'Articolo inserito correttamente.');
+        Article::create([
+            "title" => $request->title,
+            "subtitle" => $request->subtitle,
+            "body" => $request->body,
+            "img" => $request->file('img')->store("img", "public")
+        ]);
+        return redirect()->back()->with('message', 'Articolo inserito correttamente.');
     }
 
     /**
@@ -59,9 +60,20 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Article $article)
+    public function update(ArticleEditRequest $request, Article $article)
     {
-        //
+        $article->update([
+            $article->title = $request->title,
+            $article->subtitle = $request->subtitle,
+            $article->body = $request->body,
+        ]);
+        if ($request->img) {
+            $request->validate(['img' => 'image']);
+            $article->update([
+                $article->img = $request->file('img')->store('img', 'public')
+            ]);
+        }
+        return redirect(route('article.index'))->with('storeSuccess', 'Articolo modificato!');
     }
 
     /**
@@ -69,6 +81,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+        return redirect(route('article.index'))->with('storeSuccess','Articolo eliminato!');
     }
 }
