@@ -25,10 +25,10 @@
                             <a href="{{route('article.edit', compact('article'))}}" class="btn btn-warning">Modifica
                             </a>
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop">
+                                data-bs-target="#staticBackdrop-{{$article->id}}">
                                 Elimina
                             </button>
-                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                            <div class="modal fade" id="staticBackdrop-{{$article->id}}" data-bs-backdrop="static" data-bs-keyboard="false"
                                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
