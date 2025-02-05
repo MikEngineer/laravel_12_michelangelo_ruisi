@@ -25,7 +25,7 @@ class ArticleRequest extends FormRequest
             'title' => 'required|min:10',
             'subtitle' => 'required|min:5',
             'body' => 'required|min:20',
-            'img' => 'required|image',
+            // 'img' => 'required|image', NON SERVE PERCHE' C'E' IL DEFAULT
         ];
     }
 
