@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Exception;
 use App\Models\ProductModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductRequest;
 
 class PublicController extends Controller
@@ -41,6 +42,7 @@ class PublicController extends Controller
                 // 'description' => $request->description,
                 // 'price' => $request->price,
                 // 'img' => $request->file('img')->store("img", "public"),
+                'user_id'=> Auth::user()->id
             ]);
             return redirect()->back()->with('storeSuccess', 'Prodotto inserito correttamente!');
         } catch (Exception $e) {
