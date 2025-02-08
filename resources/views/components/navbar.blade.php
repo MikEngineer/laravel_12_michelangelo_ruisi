@@ -11,9 +11,6 @@
                     <a class="nav-link" aria-current="page" href="{{route('home')}}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('products.index')}}">Prodotti</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{route('article.index')}}">Articoli</a>
                 </li>
                 @guest

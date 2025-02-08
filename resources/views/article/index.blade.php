@@ -20,6 +20,15 @@
                             <h3 class="card-title d-block text-truncate">{{$article->title}}</h3>
                             <h6 class="card-text d-block text-truncate">{{$article->subtitle}}</h6>
                             <p class="card-text d-block text-truncate">{{$article->body}}</p>
+                            <div class="row overflow-x-auto mb-1">
+                                <div class="col-1 d-flex">
+                                    @if (count($article->tags))
+                                        @foreach ($article->tags as $tag)
+                                            <span class="badge text-bg-primary mx-1 my-2">#{{$tag->name}}</span>
+                                        @endforeach
+                                    @endif
+                                </div>
+                            </div>
                             <a href="{{route('article.show', compact('article'))}}" class="btn btn-success">Leggi
                             </a>
                             <a href="{{route('article.edit', compact('article'))}}" class="btn btn-warning">Modifica
@@ -28,8 +37,9 @@
                                 data-bs-target="#staticBackdrop-{{$article->id}}">
                                 Elimina
                             </button>
-                            <div class="modal fade" id="staticBackdrop-{{$article->id}}" data-bs-backdrop="static" data-bs-keyboard="false"
-                                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal fade" id="staticBackdrop-{{$article->id}}" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">

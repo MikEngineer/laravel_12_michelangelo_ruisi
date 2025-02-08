@@ -1,5 +1,6 @@
 .card-custom{
-    min-height: 382px;
+    min-height: 420px;
+    max-height: 420px;
 }
 
 .img-article{

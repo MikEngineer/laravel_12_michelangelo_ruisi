@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use App\Models\Tag;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ArticleEditRequest;
 
 class ArticleController extends Controller
@@ -24,7 +26,9 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view("article.create");
+        $tags = Tag::all();
+
+        return view("article.create", compact("tags"));
     }
 
     /**
@@ -38,6 +42,8 @@ class ArticleController extends Controller
             "body" => $request->body,
             // "img" => $request->file('img')->store("img", "public")
         ]);
+
+        $article->tags()->attach($request->tags);
 
         if ($request->file("img")) {
             $article->img = $request->file("img")->store("img", "public");
@@ -59,7 +65,9 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        return view('article.edit', compact('article'));
+        $tags = Tag::all();
+
+        return view('article.edit', compact('article', 'tags'));
     }
 
     /**
@@ -72,6 +80,11 @@ class ArticleController extends Controller
             $article->subtitle = $request->subtitle,
             $article->body = $request->body,
         ]);
+
+        $article->tags()->sync($request->tags);
+
+        Storage::delete($article->img); // non funziona
+        
         if ($request->img) {
             $request->validate(['img' => 'image']);
             $article->update([
@@ -87,6 +100,7 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         $article->delete();
+        $article->tags->detach();
         return redirect(route('article.index'))->with('storeSuccess','Articolo eliminato!');
     }
 }

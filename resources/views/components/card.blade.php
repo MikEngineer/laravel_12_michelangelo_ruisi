@@ -1,4 +1,4 @@
-<div class="col-12 col-md-4 col-lg-3 my-3 d-flex align-items-center justify-content-center pt-5">
+{{-- <div class="col-12 col-md-4 col-lg-3 my-3 d-flex align-items-center justify-content-center pt-5">
     <div class="card card-custom" style="width: 18rem;">
         <img src="{{Storage::url($product->img)}}" class="card-img-top" alt="Immagine {{$product->name}}">
         <div class="card-body">
@@ -8,4 +8,4 @@
             <p class="card-text">{{$product->price}} €</p>
         </div>
     </div>
-</div>
+</div> --}}

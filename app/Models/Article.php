@@ -12,4 +12,13 @@ class Article extends Model
         'body',
         'img'
     ];
+
+    /**
+     * The tags that belong to the article.
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
 }

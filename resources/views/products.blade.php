@@ -1,4 +1,4 @@
-<x-layout>
+{{-- <x-layout>
 
     <div class="container-fluid">
         <div class="row align-items-center justify-content-center">
@@ -8,4 +8,4 @@
         </div>
     </div>
 
-</x-layout>
+</x-layout> --}}
